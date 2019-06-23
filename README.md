@@ -1,47 +1,15 @@
-## Ak
+# akindock docker image
+ak from Akretion, but operating in a container, for instance on CoreOS
 
 
-Installation:
+Execute following commands to install voodoo in a container on CoreOS
+$ curl -L --fail https://github.com/whulshof/akindock/releases/download/v1.0/ak.sh > ~/voodoo
+$ sudo mkdir -p /opt/bin
+$ sudo mv ~/ak /opt/bin/
+$ sudo chown root:root /opt/bin/ak
+$ sudo chmod +x /opt/bin/ak
 
-We deeply recommand you to use pipx for installing python cli
+Execute following commands to install ak in a container on MacOS
+$ curl -L --fail https://github.com/whulshof/akindock/releases/download/v1.0/ak-macos.sh > /usr/local/bin/ak
+$ sudo chmod +x /usr/local/bin/ak
 
-Install
-
-```
-pipx install -e --spec git+https://github.com/akretion/ak-odoo-incubator  ak --force --include-deps
-```
-
-Install for dev purpose
-```
-git clone https://github.com/akretion/ak
-cd ak
-pipx install -e --spec . ak --force --include-deps
-```
-
-Usage
-
-```
-
-Usage:
-    ak [SWITCHES] [SUBCOMMAND [SWITCHES]] args...
-
-Meta-switches
-    -h, --help         Prints this help message and quits
-    --help-all         Print help messages of all subcommands and quit
-    -v, --version      Prints the program's version and quits
-
-Switches
-    --dry-run          Dry run mode
-    --verbose          Verbose mode
-
-Subcommands:
-    build              Build dependencies for odoo; see 'ak build --help' for more info
-    db                 Read db credentials from ERP_CFG.  Add -d flag to the current command to override PGDATABASE Add self.db  Usage: Heritate from this
-                       class and call determine_db()  class AkSomething(cli.Application, DbTools): def main(self): self.set_db() # your stuff here print
-                       self.db; see 'ak db --help' for more info
-    diff               Diff tools. Scan all Odoo module repositories, based on addons_path in the erp config file. For each repository, launch a diff
-                       command. For the time being, only git is implemented.; see 'ak diff --help' for more info
-    freeze             Freeze dependencies for odoo; see 'ak freeze --help' for more info
-    run                Start odoo.; see 'ak run --help' for more info
-    upgrade            Upgrade odoo.; see 'ak upgrade --help' for more info
-```
