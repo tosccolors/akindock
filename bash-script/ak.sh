@@ -19,29 +19,26 @@ VD_USER="docky"
 VD_SCRIPT="/opt/bin/ak"
 
 
-if [ "$USER" == "$VD_USER" ]; then
-   echo "user is $VD_USER"
-else 
-  echo "user is NOT $VD_USER"
+if [ "$USER" != "$VD_USER" ]; then
   if [ $(grep -c $VD_USER "/etc/passwd") -ne 0 ]; then
-     echo "$VD_USER exists"
+  :
   else
      echo "$VD_USER does not exist"
      if [ $(grep -c "$VD_USER" "/etc/group") -ne 0 ]; then
         echo "$VD_USER group exists"
      else
-	 echo "$VD_USER group does not exist"
-      	sudo groupadd -g 1000 "$VD_USER"
+        echo "$VD_USER group does not exist"
+        sudo groupadd -g 1001 "$VD_USER"
      fi
-     sudo useradd -u 1000 -g "$VD_USER" "$VD_USER"
+     sudo useradd -u 1001 -g "$VD_USER" "$VD_USER"
      sudo passwd -d "$VD_USER"
      sudo usermod -a -G docker "$VD_USER"
      echo "user $VD_USER added as member of group $VD_USER and docker"
 
   fi
-  echo "restarting as $VD_USER"
-  exec su "$VD_USER" "$VD_SCRIPT" "$@"	
+  exec sudo -u "$VD_USER"  "$VD_SCRIPT" "$@"
 fi
+
 
 # Setup options for connecting to docker host
 if [ -z "$DOCKER_HOST" ]; then
