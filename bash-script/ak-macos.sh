@@ -13,8 +13,8 @@
 
 set -e
 
-VERSION="1.0"
-IMAGE="magnuscolors/akindock:latest"
+VERSION="2.0"
+IMAGE="tosc-registry:443/akindock:latest"
 USER=$USER
 VD_SCRIPT="/usr/local/bin/ak"
 
