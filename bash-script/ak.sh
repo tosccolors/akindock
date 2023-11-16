@@ -14,7 +14,7 @@
 set -e
 
 VERSION="1.0"
-IMAGE="magnuscolors/akindock:latest"
+IMAGE="tosc-registry:443/akindock:latest"
 VD_USER="docky"
 VD_SCRIPT="/opt/bin/ak"
 
@@ -67,5 +67,6 @@ fi
 if [ -t 0 ]; then
     DOCKER_RUN_OPTIONS="$DOCKER_RUN_OPTIONS -i"
 fi
+
 DOCKER_RUN_OPTIONS="$DOCKER_RUN_OPTIONS -e USERID=$UID -e USERNAME=$USER -e DOCKERID=$DOCKERID"
 exec docker run --rm $DOCKER_RUN_OPTIONS $DOCKER_ADDR $VOLUMES -w "$(pwd)" $IMAGE "$@"
