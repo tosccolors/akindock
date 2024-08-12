@@ -57,7 +57,7 @@ if [ "$(pwd)" != '/' ]; then
 fi
 
 if [ -n "$HOME" ]; then
-    VOLUMES="$VOLUMES -v $HOME:$HOME" # mount $HOME in $HOME[/root] to share docker.config and the docky files
+    VOLUMES="$VOLUMES -v $HOME:/root" # mount $HOME in $HOME[/root] to share docker.config and the docky files
 fi
 
 # Only allocate tty if we detect one
